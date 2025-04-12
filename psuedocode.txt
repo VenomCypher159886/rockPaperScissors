@@ -1,0 +1,9 @@
+create a function named "getComputerChoice" that generate a random number between 0 and 2
+
+if the number is 0 print rock
+if the number is 1 print paper
+if the number is 2 print scissors
+
+prompt the user to make a choice
+create a function called getHumanChoice
+
