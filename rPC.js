@@ -41,9 +41,9 @@ function returnstuff(){
 }
 
 
-function playRound() {
+function playRound(choice) {
     let computerChoice = getComputerChoice(3);
-    let lowerCasePrompt = getHumanChoice();
+    let lowerCasePrompt = choice;
     if (lowerCasePrompt == "rock" && computerChoice =="rock"){
         return "tie!"
     } else if (lowerCasePrompt == "rock" && computerChoice == "scissors") {
@@ -84,8 +84,78 @@ function playGame(){
     }
 }
 
+function playRock(){
+    const result = playRound("rock");
+    console.log(result);
+    message.textContent = result;
+    updateScores();
+}
+function playPaper(){
+    const result = playRound("paper");
+    console.log(result);
+    message.textContent = result;
+    updateScores();
+}
+function playScissors(){
+    const result = playRound("scissors");
+    console.log(result);
+    message.textContent = result;
+    updateScores();
+}
+
 function loop(){
     for (let i =0; i>5; i++){
         console.log(i);
     }
+}
+
+let rock = document.getElementById("rock");
+let paper = document.getElementById("paper");
+let scissors = document.getElementById("scissors");
+
+rock.addEventListener("click", playRock);
+paper.addEventListener("click", playPaper);
+scissors.addEventListener("click", playScissors);
+
+let message = document.getElementById("message");
+message.textContent = "";
+
+let winner = document.getElementById("winner");
+if (winner) {
+    winner.textContent = "";
+}
+
+let computerScoreEl = document.getElementById("computer-score");
+computerScoreEl.textContent = computerScore;
+let humanScoreEl = document.getElementById("human-score");
+humanScoreEl.textContent = humanScore;
+
+function updateWinner() {
+    if (!winner) return;
+
+    if (computerScore >= 5) {
+        winner.textContent = "you lose and will forever be a loser.";
+    } else if (humanScore >= 5) {
+        winner.textContent = "you win. do you feel accomplished?";
+    } else {
+        winner.textContent = "";
+    }
+}
+
+function updateScores() {
+    computerScoreEl.textContent = computerScore;
+    humanScoreEl.textContent = humanScore;
+    updateWinner();
+}
+
+let playAgain = document.getElementById("play-again");
+playAgain.addEventListener("click", reset);
+
+function reset() {
+    computerScore = 0;
+    humanScore = 0;
+    computerScoreEl.textContent = computerScore;
+    humanScoreEl.textContent = humanScore;
+    winner.textContent = "";
+    message.textContent = "";
 }
